@@ -1,0 +1,47 @@
+<!-- novels/templates/novels/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="title">Novel Manager</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'novels/style.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Novel Manager</h1>
+
+        <a href="{% url 'add_novel' %}" class="button">Add Novel</a>
+
+        <h2>List of Novels</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Genre</th>
+                    <th>Author</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for novel in novels %}
+                    <tr>
+                        <td>{{ novel.id }}</td>
+                        <td>{{ novel.name }}</td>
+                        <td>{{ novel.genre }}</td>
+                        <td>{{ novel.author }}</td>
+                        <td>
+                            <a href="{% url 'update_novel' novel.id %}">Edit</a> | 
+                            <a href="{% url 'delete_novel' novel.id %}" onclick="return confirm('Are you sure?')">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

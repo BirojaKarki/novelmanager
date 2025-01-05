@@ -1,0 +1,26 @@
+<!-- novels/templates/novels/update_novel.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="title">Update Novel</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'novels/style.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Update Novel: {{ novel.name }}</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update Novel</button>
+        </form>
+        
+        <a href="{% url 'index' %}">Back to List</a>
+    </div>
+
+</body>
+</html>
